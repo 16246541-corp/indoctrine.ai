@@ -3,21 +3,34 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "indoctrine.ai"
+name = "indoctrine-ai"
 version = "0.1.0"
 description = "The Open-Source Framework for Agentic Ethics, AI Agent Values, and Safety Compliance (NIST, EU AI Act)"
 readme = "README.md"
 requires-python = ">=3.10"
-license = {text = "MIT"}
+license = "MIT"
 authors = [
-    {name = "16246541-corp", email = "contact@indoctrine.ai"}
+    { name = "16246541-corp", email = "contact@indoctrine.ai" }
 ]
-keywords = ["agentic-ethics", "ai-values", "ai-safety", "constitutional-ai", "llm-verification", "ai", "agent", "testing", "security", "compliance", "governance", "prompt-injection", "hallucination"]
+keywords = [
+    "agentic-ethics",
+    "ai-values",
+    "ai-safety",
+    "constitutional-ai",
+    "llm-verification",
+    "ai",
+    "agent",
+    "testing",
+    "security",
+    "compliance",
+    "governance",
+    "prompt-injection",
+    "hallucination",
+]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
     "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
@@ -67,13 +80,17 @@ dev = [
 indoctrinate = "agent_indoctrination.cli.main:main"
 
 [project.urls]
-Homepage = "https://github.com/16246541-corp/agent-indoctrination"
-Documentation = "https://github.com/16246541-corp/agent-indoctrination/tree/main/docs"
-Repository = "https://github.com/16246541-corp/agent-indoctrination"
-Issues = "https://github.com/16246541-corp/agent-indoctrination/issues"
+Homepage = "https://github.com/16246541-corp/indoctrine.ai"
+Documentation = "https://github.com/16246541-corp/indoctrine.ai/tree/main/docs"
+Repository = "https://github.com/16246541-corp/indoctrine.ai"
+Issues = "https://github.com/16246541-corp/indoctrine.ai/issues"
 
 [tool.setuptools]
-packages = ["agent_indoctrination"]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["agent_indoctrination*"]
 
 [tool.setuptools.package-data]
 agent_indoctrination = ["py.typed", "config/**/*.yaml", "templates/**/*"]
@@ -85,16 +102,4 @@ target-version = ["py310", "py311", "py312"]
 [tool.ruff]
 line-length = 100
 target-version = "py310"
-select = ["E", "F", "I", "N", "W", "UP"]
 
-[tool.mypy]
-python_version = "3.10"
-warn_return_any = true
-warn_unused_configs = true
-disallow_untyped_defs = true
-
-[tool.pytest.ini_options]
-minversion = "7.0"
-addopts = "-ra -q --strict-markers"
-testpaths = ["tests"]
-pythonpath = ["."]
