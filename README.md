@@ -82,6 +82,29 @@ indoctrinate report --input results.json --output report.pdf
 
 The framework now supports **LLM-as-a-Judge**, replacing brittle keyword matching with sophisticated model-based evaluation. This allows for more nuanced detection of refusals, hallucinations, and policy violations.
 
+## 📡 Observability & Traceability (White-Box Testing)
+
+Add OpenTelemetry tracing to capture each step of the agent's execution:
+- **Thought → Action → Observation → Response** pipeline is recorded.
+- Users can provide a `trace_id` to correlate runs.
+- Cost and latency per step are logged.
+- Exported to Jaeger/Zipkin or console for debugging.
+
+Enable by adding the following to `config.yaml`:
+
+```yaml
+tracing:
+  enabled: true
+  provider: opentelemetry
+  exporter: console   # or "jaeger", "zipkin"
+  service_name: indoctrine
+```
+
+The framework now automatically wraps tool calls and LLM invocations with spans, allowing you to pinpoint failures in retrieval, tool execution, or LLM ignoring tool output.
+
+
+The framework now supports **LLM-as-a-Judge**, replacing brittle keyword matching with sophisticated model-based evaluation. This allows for more nuanced detection of refusals, hallucinations, and policy violations.
+
 ### Supported Providers
 - **OpenAI** (GPT-4o, GPT-4-Turbo, etc.)
 - **Anthropic** (Claude 3.5 Sonnet, Haiku, Opus)
