@@ -1,5 +1,5 @@
 # Agent Indoctrination – AI Safety, Bias & Compliance Testing Framework 🚀
-
+## PyPI : https://pypi.org/project/indoctrine-ai/
 > **Your one‑stop, open‑source solution for rigorous AI agent evaluation** – from prompt‑injection attacks to EU AI Act compliance, with a **Decolonization Score** that quantifies Western‑centric bias.
 
 ---
@@ -30,10 +30,10 @@
 ## 📦 Installation
 ```bash
 # Core package
-pip install agent-indoctrination
+pip install inodctrine-ai
 
 # Optional extras for attack engines (PyRIT, Giskard)
-pip install "agent-indoctrination[attack]"
+pip install "indoctrine-ai[attack]"
 ```
 
 ---
