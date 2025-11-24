@@ -1,9 +1,0 @@
-LICENSE
-README.md
-pyproject.toml
-indoctrine_ai.egg-info/PKG-INFO
-indoctrine_ai.egg-info/SOURCES.txt
-indoctrine_ai.egg-info/dependency_links.txt
-indoctrine_ai.egg-info/entry_points.txt
-indoctrine_ai.egg-info/requires.txt
-indoctrine_ai.egg-info/top_level.txt

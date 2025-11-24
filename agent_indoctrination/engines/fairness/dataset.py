@@ -214,3 +214,63 @@ class BinaryDataset:
             df['pair_id'] = self.pair_id
         
         return df
+
+    def check_data_quality(self) -> Dict[str, List[str]]:
+        """
+        Check for common data quality issues that affect fairness metrics.
+        
+        Returns:
+            Dict with 'errors', 'warnings', 'info' lists.
+        """
+        issues = {"errors": [], "warnings": [], "info": []}
+        
+        # 1. Class Imbalance
+        pos_rate = np.mean(self.y_true)
+        if pos_rate < 0.05 or pos_rate > 0.95:
+            issues["warnings"].append(
+                f"Severe class imbalance: {pos_rate*100:.1f}% positive class. "
+                "Some metrics may be unstable."
+            )
+        
+        # 2. Group Size Imbalance & Empty Groups
+        for attr in self.sensitive_names:
+            groups = np.unique(self.sensitive[attr])
+            sizes = [np.sum(self.sensitive[attr] == g) for g in groups]
+            
+            if len(sizes) == 0:
+                issues["errors"].append(f"Sensitive attribute '{attr}' has no groups.")
+                continue
+                
+            min_size = min(sizes)
+            max_size = max(sizes)
+            
+            if min_size < 10:
+                issues["warnings"].append(
+                    f"Very small group in '{attr}': min size {min_size}. "
+                    "Statistical significance is low."
+                )
+            
+            if min_size / max_size < 0.1:
+                issues["info"].append(
+                    f"Group imbalance in '{attr}': min/max ratio {min_size/max_size:.2f}."
+                )
+        
+        # 3. Missing Values (NaNs)
+        for attr in self.sensitive_names:
+            # Check for NaN/None in object arrays or float arrays
+            arr = self.sensitive[attr]
+            n_missing = 0
+            
+            if arr.dtype.kind in 'fc':  # float/complex
+                n_missing = np.sum(np.isnan(arr))
+            elif arr.dtype.kind in 'OSU':  # object/string/unicode
+                # Check for None or 'nan' string
+                n_missing = sum(1 for x in arr if x is None or (isinstance(x, float) and np.isnan(x)))
+                
+            if n_missing > 0:
+                issues["warnings"].append(
+                    f"Missing values in '{attr}': {n_missing} samples. "
+                    "These may be excluded from group stats."
+                )
+                
+        return issues

@@ -1,0 +1,114 @@
+{
+  "groups": {
+    "group_a": "1",
+    "group_b": "0",
+    "sensitive_attr": "group"
+  },
+  "metrics": {
+    "demographic_parity": 0.031128015213692295,
+    "equalized_odds": {
+      "tpr_diff": -0.09510552168834696,
+      "fpr_diff": 0.10291755028597135,
+      "avg_diff": 0.09901153598715916
+    },
+    "equal_opportunity": -0.09510552168834696,
+    "predictive_parity": {
+      "ppv_diff": -0.09449716015372578,
+      "npv_diff": -0.10668119759028849
+    },
+    "disparate_impact": 1.0662435034506261,
+    "predictive_equality": 0.10291755028597135,
+    "generalized_entropy_index": 0.10203272530706665,
+    "average_odds_difference": 0.0039060142988121965,
+    "error_difference": 0.09990991892703432,
+    "error_ratio": 3.058144329896907,
+    "false_discovery_rate_ratio": 3.540923639689072,
+    "false_negative_rate_ratio": 2.4800796812749004,
+    "false_omission_rate_ratio": 2.8202479338842976,
+    "false_positive_rate_ratio": 4.041785375118709
+  },
+  "group_statistics": {
+    "1": {
+      "n": 485,
+      "tp": 211,
+      "fp": 32,
+      "tn": 202,
+      "fn": 40,
+      "tpr": 0.8406374501992032,
+      "fpr": 0.13675213675213677,
+      "tnr": 0.8632478632478633,
+      "fnr": 0.1593625498007968,
+      "ppv": 0.8683127572016461,
+      "npv": 0.8347107438016529,
+      "positive_rate": 0.5010309278350515,
+      "error_rate": 0.14845360824742268
+    },
+    "0": {
+      "n": 515,
+      "tp": 233,
+      "fp": 9,
+      "tn": 257,
+      "fn": 16,
+      "tpr": 0.9357429718875502,
+      "fpr": 0.03383458646616541,
+      "tnr": 0.9661654135338346,
+      "fnr": 0.0642570281124498,
+      "ppv": 0.9628099173553719,
+      "npv": 0.9413919413919414,
+      "positive_rate": 0.46990291262135925,
+      "error_rate": 0.04854368932038835
+    }
+  },
+  "pass_fail": {
+    "demographic_parity": true,
+    "equal_opportunity": true,
+    "average_odds_difference": true,
+    "predictive_equality": false,
+    "error_difference": false,
+    "disparate_impact": true,
+    "error_ratio": false,
+    "false_discovery_rate_ratio": false,
+    "false_negative_rate_ratio": false,
+    "false_omission_rate_ratio": false,
+    "false_positive_rate_ratio": false,
+    "generalized_entropy_index": "False"
+  },
+  "overall_pass": false,
+  "interpretations": {
+    "disparate_impact": {
+      "metric_name": "Disparate Impact",
+      "value": 1.0662435034506261,
+      "severity": "low",
+      "plain_english": "1 group is 7% more likely to receive positive outcomes than 0 group.",
+      "impact_explanation": "\u2705 Minimal disparity. Model treats groups fairly in terms of overall positive rate.",
+      "legal_implications": null,
+      "recommended_actions": [],
+      "learn_more_url": "https://en.wikipedia.org/wiki/Disparate_impact#The_80%_rule"
+    },
+    "demographic_parity": {
+      "metric_name": "Demographic Parity Difference",
+      "value": 0.031128015213692295,
+      "severity": "low",
+      "plain_english": "1 group receives positive outcomes 3.1 percentage points more often than 0 group.",
+      "impact_explanation": "This represents a 3.1 percentage point gap in positive outcome rates.",
+      "legal_implications": null,
+      "recommended_actions": null,
+      "learn_more_url": "https://fairmlbook.org/demographic.html"
+    },
+    "error_ratio": {
+      "metric_name": "Error Ratio",
+      "value": 3.058144329896907,
+      "severity": "critical",
+      "plain_english": "1 group experiences 3.1x higher error rate than 0 group.",
+      "impact_explanation": "\u26a0\ufe0f Unequal error rates mean the model is less accurate for one group. This can lead to discriminatory outcomes even if overall positive rates are similar.",
+      "legal_implications": "\ud83d\udea8 CRITICAL: Extreme accuracy disparity may constitute discrimination, especially in high-stakes domains (hiring, lending, criminal justice).",
+      "recommended_actions": [
+        "Ensure balanced representation in training data",
+        "Check if different groups require different feature sets",
+        "Consider group-specific calibration or ensemble models",
+        "Evaluate if quality of training labels differs between groups"
+      ],
+      "learn_more_url": null
+    }
+  }
+}

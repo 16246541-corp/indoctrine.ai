@@ -18,7 +18,7 @@
 
 ## ✨ Key Features
 - **🔐 Attack Layer** – Detects prompt injection, jailbreak, token‑smuggling, multi‑turn Crescendo, and custom adversarial attacks. Scores vulnerabilities with CVSS‑like metrics.
-- **✅ Truth Layer** – Groundedness, consistency, hallucination detection, **Context‑Adherence Score**, and 3‑D embedding visualisation of failure clusters.
+- **✅ Truth Layer** – **LLM-as-a-Judge** groundedness & hallucination detection (replaces keyword matching), consistency, **Context‑Adherence Score**, and 3‑D embedding visualisation.
 - **⚖️ Governance Layer** – Full EU AI Act coverage (Articles 9‑15 & 52), NIST AI RMF, GDPR, SOC2, ISO 42001, plus a **Custom Policy Engine**.
 - **🌍 Colonization Layer (Fairness Metrics)** – Revolutionary 5‑dimensional decolonial bias testing with a **Decolonization Score** (0‑100):
   - **Epistemic Bias**: Tests for Western-centric knowledge validation and whose "facts" are privileged
@@ -74,6 +74,54 @@ Run the same flow from the CLI:
 ```bash
 indoctrinate run --config config.yaml --agent my_agent.py
 indoctrinate report --input results.json --output report.pdf
+```
+
+---
+
+## 🧠 LLM-as-a-Judge Evaluation
+
+The framework now supports **LLM-as-a-Judge**, replacing brittle keyword matching with sophisticated model-based evaluation. This allows for more nuanced detection of refusals, hallucinations, and policy violations.
+
+### Supported Providers
+- **OpenAI** (GPT-4o, GPT-4-Turbo, etc.)
+- **Anthropic** (Claude 3.5 Sonnet, Haiku, Opus)
+- **Local LLMs** via **Ollama** or **LM Studio** (Llama 3, Mistral, etc.)
+
+### Configuration
+Configure your judge in `config.yaml`:
+
+**OpenAI:**
+```yaml
+evaluator:
+  provider: "openai"
+  model: "gpt-4o"
+  api_key: "${OPENAI_API_KEY}"
+```
+
+**Anthropic:**
+```yaml
+evaluator:
+  provider: "anthropic"
+  model: "claude-3-5-sonnet-20240620"
+  api_key: "${ANTHROPIC_API_KEY}"
+```
+
+**Local (Ollama):**
+```yaml
+evaluator:
+  provider: "openai" # Ollama is OpenAI-compatible
+  model: "llama3"
+  endpoint: "http://localhost:11434/v1"
+  api_key: "ollama" # Required but ignored
+```
+
+**Local (LM Studio):**
+```yaml
+evaluator:
+  provider: "openai"
+  model: "local-model"
+  endpoint: "http://localhost:1234/v1"
+  api_key: "lm-studio"
 ```
 
 ---
@@ -176,41 +224,65 @@ While the **Colonization Layer** measures cultural and epistemic bias through qu
 | **Disparity Ratios** | Disparate Impact, Error Ratio, FPR/FNR/FDR/FOR Ratios | Ratios of rates between groups (ideal = 1.0, "80% rule" for disparate impact) |
 | **Inequality Measures** | Generalized Entropy Index, Average Odds Difference, Error Difference | Population-level inequality in prediction accuracy and correctness |
 
-### Usage Example
+### 🧠 Interpretability & Guidance (New!)
+
+Don't just get numbers—get **actionable insights**. The framework now includes an **Interpretability Layer** that translates complex metrics into plain English:
+
+- **Plain-English Explanations**: "Women are 25% less likely to receive positive outcomes than men."
+- **Severity Scoring**: 🟢 Low, 🟡 Medium, 🟠 High, 🔴 Critical
+- **Legal Implications**: Flags violations of standards like the EEOC "80% rule".
+- **Actionable Recommendations**: Specific steps to fix identified bias issues.
+
+**Example Output:**
+```text
+🔴 CRITICAL: Disparate Impact Ratio = 0.60
+   Severity: CRITICAL
+   Explanation: Unprivileged group is 40% less likely to receive positive outcomes.
+   Legal Risk: Violates EEOC 80% rule (4/5ths rule). High litigation risk.
+   Recommendation: Audit training data for representation bias; check for proxy variables.
+```
+
+### Usage Example: The "5-Line" Check
+
+The easiest way to check for bias is using the `quick_fairness_check` wrapper:
 
 ```python
-from agent_indoctrination.engines.fairness import BinaryDataset, FairnessReport
-from agent_indoctrination.engines.fairness.data_loaders import load_adult
+from agent_indoctrination.engines.fairness import quick_fairness_check
 
-# Load standard benchmark dataset
-X, y_true, sensitive_attr = load_adult(data_path="adult.data", sensitive="sex")
-
-# Your model's predictions
-y_pred = my_model.predict(X)
-
-# Create dataset for fairness evaluation
-dataset = BinaryDataset(
+# 1. Load your data (labels, predictions, demographics)
+# 2. Run the check
+report = quick_fairness_check(
     y_true=y_true,
     y_pred=y_pred,
-    sensitive={"sex": sensitive_attr},
+    sensitive_values=demographics,
+    use_case="hiring"  # Applies domain-specific thresholds (e.g. EEOC rules)
 )
 
-# Generate comprehensive fairness report
-report = FairnessReport(
-    dataset=dataset,
-    group_a="Female",  # Unprivileged group
-    group_b="Male",    # Privileged group
-    sensitive_attr="sex"
-)
-
-# View results
+# 3. Print actionable report
 print(report.to_markdown())
+```
 
-# Check specific metrics
-print(f"Demographic Parity Difference: {report.metric_results['demographic_parity']:.4f}")
-print(f"Disparate Impact Ratio: {report.metric_results['disparate_impact']:.4f}")
-print(f"Equalized Odds: {report.metric_results['equalized_odds']}")
-print(f"Overall Pass: {report.overall_pass}")
+### LLM-Native Fairness Testing (New!)
+
+Test your LLM agents directly without manual dataset creation. The framework automatically generates demographic variants of your prompts to detect bias.
+
+```python
+from agent_indoctrination.engines.fairness import test_llm_fairness
+
+# Define your agent
+def my_agent(prompt):
+    return llm.generate(prompt)
+
+# Run fairness test
+results = test_llm_fairness(
+    agent=my_agent,
+    task="hiring",
+    template="Should we hire {name} for the job?",
+    label_extractor=lambda x: 1 if "yes" in x.lower() else 0,
+    n_trials=100
+)
+
+print(f"Disparate Impact: {results['disparate_impact_ratio']}")
 ```
 
 ### Standard Fairness Benchmarks

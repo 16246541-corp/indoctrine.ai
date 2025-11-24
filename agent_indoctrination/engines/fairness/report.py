@@ -53,6 +53,7 @@ class FairnessReport:
         group_b: str,
         sensitive_attr: str = "sensitive",
         thresholds: Optional[FairnessThresholds] = None,
+        use_case: str = "general",
     ):
         """
         Initialize fairness report.
@@ -63,18 +64,34 @@ class FairnessReport:
             group_b: Privileged group value
             sensitive_attr: Name of sensitive attribute
             thresholds: Optional thresholds for pass/fail
+            use_case: Domain context (hiring, lending, etc.) for interpretations
         """
         self.dataset = dataset
         self.group_a = group_a
         self.group_b = group_b
         self.sensitive_attr = sensitive_attr
         self.thresholds = thresholds or FairnessThresholds()
+        self.use_case = use_case
+        
+        # Check data quality
+        self.data_quality_issues = self.dataset.check_data_quality()
         
         # Compute all metrics
         self.metric_results = self._compute_all_metrics()
         self.group_stats = self._get_group_statistics()
         self.pass_fail = self._evaluate_pass_fail()
+        
+        # Initialize interpreter
+        from .interpreter import MetricInterpreter
+        self.interpreter = MetricInterpreter(use_case=use_case)
+        self.interpretations = self.interpreter.interpret_all_metrics(
+            self.metric_results,
+            group_a=str(group_a),
+            group_b=str(group_b)
+        )
     
+    # ... (methods _compute_all_metrics, _get_group_statistics, _evaluate_pass_fail remain unchanged) ...
+
     def _compute_all_metrics(self) -> Dict:
         """Compute all 15 fairness metrics."""
         ds = self.dataset
@@ -174,6 +191,11 @@ class FairnessReport:
     
     def to_dict(self) -> Dict:
         """Export as dictionary."""
+        # Convert interpretations to dicts
+        interp_dict = {
+            k: v.to_dict() for k, v in self.interpretations.items()
+        }
+        
         return {
             "groups": {
                 "group_a": str(self.group_a),
@@ -184,6 +206,7 @@ class FairnessReport:
             "group_statistics": self.group_stats,
             "pass_fail": self.pass_fail,
             "overall_pass": self.overall_pass,
+            "interpretations": interp_dict,
         }
     
     def to_json(self, indent: int = 2) -> str:
@@ -191,13 +214,38 @@ class FairnessReport:
         return json.dumps(self.to_dict(), indent=indent, default=str)
     
     def to_markdown(self) -> str:
-        """Export as Markdown report."""
+        """Export as Markdown report with interpretations."""
         md = []
         md.append(f"# Fairness Evaluation Report\n")
         md.append(f"**Comparison**: `{self.group_a}` (unprivileged) vs `{self.group_b}` (privileged)\n")
         md.append(f"**Sensitive Attribute**: {self.sensitive_attr}\n")
         md.append(f"**Overall Result**: {'✅ PASS' if self.overall_pass else '❌ FAIL'}\n")
         
+        # Data Quality Warnings
+        if self.data_quality_issues["errors"] or self.data_quality_issues["warnings"]:
+            md.append("\n## ⚠️ Data Quality Issues\n")
+            for error in self.data_quality_issues["errors"]:
+                md.append(f"- 🔴 **ERROR**: {error}\n")
+            for warning in self.data_quality_issues["warnings"]:
+                md.append(f"- 🟠 **WARNING**: {warning}\n")
+        
+        # Executive Summary / Top Concerns
+        top_concerns = self.interpreter.get_top_concerns(self.interpretations, n=3)
+        if top_concerns:
+            md.append("\n## 🚨 Top Fairness Concerns\n")
+            for concern in top_concerns:
+                icon = self._get_severity_icon(concern.severity)
+                md.append(f"### {icon} {concern.metric_name} ({concern.severity.value.upper()})\n")
+                md.append(f"**Value**: {concern.value:.4f}\n")
+                md.append(f"> {concern.plain_english}\n")
+                if concern.legal_implications:
+                    md.append(f"**Legal Risk**: {concern.legal_implications}\n")
+                if concern.recommended_actions:
+                    md.append("**Recommended Actions**:")
+                    for action in concern.recommended_actions:
+                        md.append(f"- {action}")
+                md.append("\n")
+
         # Group statistics
         md.append("\n## Group Statistics\n")
         md.append("| Metric | " + str(self.group_a) + " | " + str(self.group_b) + " |")
@@ -213,41 +261,73 @@ class FairnessReport:
         for key in ["tpr", "fpr", "tnr", "fnr", "ppv", "npv", "positive_rate", "error_rate"]:
             md.append(f"| {key.upper()} | {stats_a[key]:.4f} | {stats_b[key]:.4f} |")
         
-        # Fairness metrics
-        md.append("\n## Fairness Metrics\n")
-        md.append("| Metric | Value | Status |")
-        md.append("|--------|-------|--------|")
+        # Fairness metrics table
+        md.append("\n## Fairness Metrics Detail\n")
+        md.append("| Metric | Value | Status | Severity |")
+        md.append("|--------|-------|--------|----------|")
         
         for key, value in self.metric_results.items():
             status = "✅ PASS" if self.pass_fail.get(key, False) else "❌ FAIL"
             
+            # Get severity if available
+            severity = "-"
+            if key in self.interpretations:
+                sev = self.interpretations[key].severity
+                severity = f"{self._get_severity_icon(sev)} {sev.value.upper()}"
+            
             if isinstance(value, dict):
                 # Handle multi-value metrics like equalized_odds
                 for sub_key, sub_value in value.items():
-                    md.append(f"| {key}.{sub_key} | {sub_value:.4f} | - |")
+                    md.append(f"| {key}.{sub_key} | {sub_value:.4f} | - | - |")
             else:
-                md.append(f"| {key} | {value:.4f} | {status} |")
+                md.append(f"| {key} | {value:.4f} | {status} | {severity} |")
         
+        # Detailed Interpretations
+        md.append("\n## 📖 Detailed Interpretations\n")
+        for key, interp in self.interpretations.items():
+            md.append(f"### {interp.metric_name}\n")
+            md.append(f"**Value**: {interp.value:.4f}\n")
+            md.append(f"**Explanation**: {interp.plain_english}\n")
+            md.append(f"**Impact**: {interp.impact_explanation}\n")
+            if interp.learn_more_url:
+                md.append(f"[Learn more]({interp.learn_more_url})\n")
+            md.append("\n")
+            
         return "\n".join(md)
     
     def to_html(self) -> str:
         """Export as HTML report."""
         # Convert markdown to basic HTML
         md = self.to_markdown()
+        # Basic markdown to HTML conversion (simplified)
         html = md.replace("# ", "<h1>").replace("</h1>\n", "</h1>\n")
         html = html.replace("## ", "<h2>").replace("</h2>\n", "</h2>\n")
+        html = html.replace("### ", "<h3>").replace("</h3>\n", "</h3>\n")
         html = html.replace("**", "<strong>").replace("</strong>", "</strong>")
         html = html.replace("`", "<code>").replace("</code>", "</code>")
+        html = html.replace("> ", "<blockquote>").replace("\n\n", "<br><br>")
         
         # Convert tables
         lines = html.split("\n")
         in_table = False
         result = []
         
+        result.append("""
+        <style>
+            body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.5; max_width: 800px; margin: 0 auto; padding: 20px; }
+            table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+            th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+            th { background-color: #f2f2f2; }
+            blockquote { border-left: 4px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
+            h1 { border-bottom: 2px solid #eee; padding-bottom: 10px; }
+            h2 { margin-top: 30px; border-bottom: 1px solid #eee; }
+        </style>
+        """)
+        
         for line in lines:
             if line.startswith("|"):
                 if not in_table:
-                    result.append("<table border='1'>")
+                    result.append("<table>")
                     in_table = True
                 
                 cells = [c.strip() for c in line.split("|")[1:-1]]
@@ -267,3 +347,15 @@ class FairnessReport:
             result.append("</table>")
         
         return "\n".join(result)
+
+    def _get_severity_icon(self, severity) -> str:
+        """Get emoji icon for severity level."""
+        # Handle string or enum
+        sev_str = severity if isinstance(severity, str) else severity.value
+        icons = {
+            "low": "🟢",
+            "medium": "🟡",
+            "high": "🟠",
+            "critical": "🔴"
+        }
+        return icons.get(sev_str, "⚪")

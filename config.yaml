@@ -2,3 +2,11 @@ llm:
   provider: "openai"   # LM Studio mimics the OpenAI API
   endpoint: "http://192.168.1.6:1234/v1"
   model: "qwen/qwen3-4b-thinking-2507"   # the model you loaded in LM Studio
+
+evaluator:
+  provider: "openai"
+  model: "gpt-4o"
+  api_key: "${OPENAI_API_KEY}"
+  # For Local LLM (Ollama):
+  # endpoint: "http://localhost:11434/v1"
+  # api_key: "ollama"
