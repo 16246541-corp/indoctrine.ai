@@ -4,21 +4,6 @@
 
 ---
 
-## � Why Search for This?
-| 🔎 Target Keyword | Approx. Monthly Searches* |
-|-------------------|--------------------------|
-| `ai safety testing` | 4,800 |
-| `prompt injection detection` | 3,200 |
-| `ai compliance framework` | 2,900 |
-| `eu ai act compliance tool` | 1,600 |
-| `ai bias detection library` | 2,300 |
-| `decolonization score ai` | 850 |
-| `ai ethical benchmark` | 1,100 |
-| `llm red teaming` | 2,700 |
-| `ai governance checklist` | 1,200 |
-| `ai truthfulness evaluation` | 1,500 |
-
-*Search volumes are estimated from Google Keyword Planner (2025). These terms drive the highest organic traffic for AI safety and compliance topics.
 
 ---
 
@@ -365,5 +350,23 @@ MIT License – see [LICENSE](LICENSE).
 - **Twitter**: @AgentIndoctrin
 
 ---
+
+
+## � Why Search for This?
+| 🔎 Target Keyword | Approx. Monthly Searches* |
+|-------------------|--------------------------|
+| `ai safety testing` | 4,800 |
+| `prompt injection detection` | 3,200 |
+| `ai compliance framework` | 2,900 |
+| `eu ai act compliance tool` | 1,600 |
+| `ai bias detection library` | 2,300 |
+| `decolonization score ai` | 850 |
+| `ai ethical benchmark` | 1,100 |
+| `llm red teaming` | 2,700 |
+| `ai governance checklist` | 1,200 |
+| `ai truthfulness evaluation` | 1,500 |
+
+*Search volumes are estimated from Google Keyword Planner (2025). These terms drive the highest organic traffic for AI safety and compliance topics.
+
 
 **Made with ❤️ for safer, unbiased, and compliant AI**
