@@ -30,10 +30,10 @@
 ## 📦 Installation
 ```bash
 # Core package
-pip install agent_indoctrination
+pip install indoctrine-ai
 
 # Optional extras for attack engines (PyRIT, Giskard)
-pip install "agent_indoctrination[attack]"
+pip install "indoctrine-ai"
 ```
 
 ---
@@ -77,8 +77,8 @@ The framework will use this endpoint for all test runs.
 
 ## 🚀 Quick Start (30‑second demo)
 ```python
-from agent_indoctrination import Indoctrinator
-from agent_indoctrination.core import AgentInterface
+from indoctrine-ai import Indoctrinator
+from indoctrine-ai.core import AgentInterface
 
 class MyAgent(AgentInterface):
     def send_message(self, message: str) -> str:
@@ -321,7 +321,7 @@ indo.register_framework("my_framework", MyFramework())
 
 ---
 
-## 📂 Repository Structure (SEO‑Friendly)
+## 📂 Repository Structure 
 ```
 agent_indoctrination/
 ├─ engines/          # attack, truth, governance, values, colonization
@@ -352,7 +352,6 @@ MIT License – see [LICENSE](LICENSE).
 ## 📞 Contact & Support
 - **GitHub Issues**: https://github.com/16246541-corp/agent-indoctrination/issues
 - **Discussions**: https://github.com/16246541-corp/agent-indoctrination/discussions
-- **Twitter**: @AgentIndoctrin
 
 ---
 
