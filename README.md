@@ -1,6 +1,6 @@
 # Agent Indoctrination – AI Safety, Bias & Compliance Testing Framework 🚀
-## PyPI : https://pypi.org/project/indoctrine-ai/
-> **Your one‑stop, open‑source solution for rigorous AI agent evaluation** – from prompt‑injection attacks to EU AI Act compliance, with a **Decolonization Score** that quantifies Western‑centric bias.
+## PyPI : https://pypi.org/project/agent_indoctrination/
+> **Your one‑stop, open‑source solution for rigorous AI agent evaluation** – from prompt‑injection attacks to EU AI Act compliance, with a **Decolonization Score** that quantifies Western‑ce[...]
 
 ---
 
@@ -30,10 +30,10 @@
 ## 📦 Installation
 ```bash
 # Core package
-pip install inodctrine-ai
+pip install agent_indoctrination
 
 # Optional extras for attack engines (PyRIT, Giskard)
-pip install "indoctrine-ai[attack]"
+pip install "agent_indoctrination[attack]"
 ```
 
 ---
@@ -107,7 +107,7 @@ indoctrinate report --input results.json --output report.pdf
 ---
 
 ## 📖 Why This Product?
-The rapid proliferation of powerful LLM‑driven agents brings unprecedented benefits **and** novel risks. Traditional testing tools focus on isolated model metrics (e.g., perplexity) but ignore the **agent‑level** interactions that can cause:
+The rapid proliferation of powerful LLM‑driven agents brings unprecedented benefits **and** novel risks. Traditional testing tools focus on isolated model metrics (e.g., perplexity) but ignore the *[...]
 - **Prompt‑injection attacks** where an adversary manipulates the agent’s internal reasoning.
 - **Hallucinations** that propagate through multi‑step workflows, leading to unsafe decisions.
 - **Regulatory non‑compliance** with emerging standards such as the EU AI Act, NIST AI RMF, and GDPR.
@@ -116,7 +116,7 @@ The rapid proliferation of powerful LLM‑driven agents brings unprecedented ben
 **Agent Indoctrination** addresses these gaps by providing a **single, unified framework** that evaluates agents across three orthogonal dimensions:
 1. **Attack Surface** – Simulated adversarial prompts, jailbreaks, and token‑smuggling.
 2. **Truthfulness** – Groundedness, consistency, and context‑adherence across multi‑turn dialogues.
-3. **Governance & Bias** – Automated compliance checks against legal frameworks and a novel **Decolonization Score** that quantifies bias across epistemic, linguistic, historical, cultural, and stereotyping axes.
+3. **Governance & Bias** – Automated compliance checks against legal frameworks and a novel **Decolonization Score** that quantifies bias across epistemic, linguistic, historical, cultural, and ster[...]
 
 By surfacing these metrics in a single report, teams can **prioritise remediation**, demonstrate compliance to auditors, and build trust with stakeholders.
 
@@ -176,6 +176,7 @@ class MyFramework(ComplianceFramework):
 
 indo.register_framework("my_framework", MyFramework())
 ```
+
 ---
 
 ## 📂 Repository Structure (SEO‑Friendly)
@@ -189,6 +190,7 @@ agent_indoctrination/
 ├─ tests/            # unit & integration tests (coverage > 90%)
 └─ pyproject.toml    # build & dependencies
 ```
+
 ---
 
 ## 🤝 Contributing & Community (Boost SEO for "open source AI safety")
@@ -212,9 +214,10 @@ MIT License – see [LICENSE](LICENSE).
 
 ---
 
+
 **Made with ❤️ for safer, unbiased, and compliant AI**
 
-> **Your one‑stop, open‑source solution for rigorous AI agent evaluation** – from prompt‑injection attacks to EU AI Act compliance, with a **Decolonization Score** that quantifies Western‑centric bias.
+> **Your one‑stop, open‑source solution for rigorous AI agent evaluation** – from prompt‑injection attacks to EU AI Act compliance, with a **Decolonization Score** that quantifies Western‑ce[...]
 
 ---
 
@@ -241,10 +244,10 @@ MIT License – see [LICENSE](LICENSE).
 ## 📦 Installation
 ```bash
 # Core package
-pip install agent-indoctrination
+pip install agent_indoctrination
 
 # Optional extras for attack engines (PyRIT, Giskard)
-pip install "agent-indoctrination[attack]"
+pip install "agent_indoctrination[attack]"
 ```
 
 ---
@@ -315,6 +318,7 @@ class MyFramework(ComplianceFramework):
 
 indo.register_framework("my_framework", MyFramework())
 ```
+
 ---
 
 ## 📂 Repository Structure (SEO‑Friendly)
@@ -328,6 +332,7 @@ agent_indoctrination/
 ├─ tests/            # unit & integration tests (coverage > 90%)
 └─ pyproject.toml    # build & dependencies
 ```
+
 ---
 
 ## 🤝 Contributing & Community (Boost SEO for "open source AI safety")
@@ -350,23 +355,6 @@ MIT License – see [LICENSE](LICENSE).
 - **Twitter**: @AgentIndoctrin
 
 ---
-
-
-## � Why Search for This?
-| 🔎 Target Keyword | Approx. Monthly Searches* |
-|-------------------|--------------------------|
-| `ai safety testing` | 4,800 |
-| `prompt injection detection` | 3,200 |
-| `ai compliance framework` | 2,900 |
-| `eu ai act compliance tool` | 1,600 |
-| `ai bias detection library` | 2,300 |
-| `decolonization score ai` | 850 |
-| `ai ethical benchmark` | 1,100 |
-| `llm red teaming` | 2,700 |
-| `ai governance checklist` | 1,200 |
-| `ai truthfulness evaluation` | 1,500 |
-
-*Search volumes are estimated from Google Keyword Planner (2025). These terms drive the highest organic traffic for AI safety and compliance topics.
 
 
 **Made with ❤️ for safer, unbiased, and compliant AI**
