@@ -179,7 +179,7 @@ indo.register_framework("my_framework", MyFramework())
 
 ---
 
-## 📂 Repository Structure (SEO‑Friendly)
+## 📂 Repository Structure 
 ```
 agent_indoctrination/
 ├─ engines/          # attack, truth, governance, values, colonization
