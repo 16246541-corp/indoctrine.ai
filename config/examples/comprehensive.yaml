@@ -1,0 +1,40 @@
+# Comprehensive Configuration Example
+
+agent:
+  name: "test-agent-comprehensive"
+  type: "http"
+  endpoint: "http://localhost:8000/chat"
+
+attack:
+  enabled: true
+  strategies:
+    - prompt_injection
+    - jailbreak
+    - token_smuggling
+    - crescendo
+    - many_shot
+    - skeleton_key
+    - art_prompt
+    - math_prompt
+  max_attempts: 50
+  include_pyrit: false
+  include_giskard: false
+
+truth:
+  enabled: true
+  groundedness_threshold: 0.8
+
+governance:
+  enabled: true
+  frameworks:
+    - eu_ai_act
+    - nist_ai_rmf
+    - gdpr
+    - ccpa
+
+reporting:
+  format:
+    - markdown
+    - json
+
+log_level: "INFO"

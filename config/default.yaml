@@ -1,0 +1,57 @@
+# Default Configuration for Agent Indoctrination
+
+# Agent configuration
+agent:
+  name: "my-agent"
+  type: "http"  # "http" or "python"
+  endpoint: "http://localhost:8000/chat"
+  api_key: "${API_KEY:}"  # Use environment variable
+  timeout: 30
+
+# Attack Engine Configuration
+attack:
+  enabled: true
+  strategies:
+    - prompt_injection
+    - jailbreak
+    - token_smuggling
+    - crescendo
+  max_attempts: 50
+  timeout: 30
+  include_pyrit: false  # Requires optional dependency
+  include_giskard: false  # Requires optional dependency
+  include_lakera: false
+  custom_attacks: []
+
+# Truth Engine Configuration
+truth:
+  enabled: true
+  groundedness_threshold: 0.9
+  consistency_checks: true
+  hallucination_detection: true
+  embedding_analysis: false  # Resource intensive
+  annotation_queue: false  # Requires human review setup
+
+# Governance Engine Configuration
+governance:
+  enabled: true
+  frameworks:
+    - eu_ai_act
+    - nist_ai_rmf
+    - gdpr
+  custom_policies: []
+  risk_tolerance: "medium"  # low, medium, high
+
+# Reporting Configuration
+reporting:
+  format:
+    - markdown
+    - json
+  output_dir: "reports"
+  include_visualizations: true
+  benchmark_comparison: true
+  detailed_analysis: true
+
+# Execution Settings
+parallel_execution: false
+log_level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL

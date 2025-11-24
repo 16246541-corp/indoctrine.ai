@@ -1,0 +1,168 @@
+Metadata-Version: 2.4
+Name: indoctrine.ai
+Version: 0.1.0
+Summary: The Open-Source Framework for Agentic Ethics, AI Agent Values, and Safety Compliance (NIST, EU AI Act)
+Author-email: 16246541-corp <contact@indoctrine.ai>
+License: MIT
+Project-URL: Homepage, https://github.com/16246541-corp/agent-indoctrination
+Project-URL: Documentation, https://github.com/16246541-corp/agent-indoctrination/tree/main/docs
+Project-URL: Repository, https://github.com/16246541-corp/agent-indoctrination
+Project-URL: Issues, https://github.com/16246541-corp/agent-indoctrination/issues
+Keywords: agentic-ethics,ai-values,ai-safety,constitutional-ai,llm-verification,ai,agent,testing,security,compliance,governance,prompt-injection,hallucination
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Security
+Classifier: Topic :: Software Development :: Testing
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: pyyaml>=6.0
+Requires-Dist: requests>=2.31.0
+Requires-Dist: jinja2>=3.1.0
+Requires-Dist: reportlab>=4.0.0
+Requires-Dist: numpy>=1.24.0
+Requires-Dist: pandas>=2.0.0
+Requires-Dist: scikit-learn>=1.3.0
+Requires-Dist: matplotlib>=3.7.0
+Requires-Dist: plotly>=5.14.0
+Requires-Dist: rich>=13.0.0
+Requires-Dist: click>=8.1.0
+Requires-Dist: tqdm>=4.65.0
+Requires-Dist: aiohttp>=3.9.0
+Provides-Extra: attack
+Requires-Dist: pyrit>=0.2.0; extra == "attack"
+Requires-Dist: giskard>=2.0.0; extra == "attack"
+Provides-Extra: all
+Requires-Dist: agent-indoctrination[attack]; extra == "all"
+Provides-Extra: dev
+Requires-Dist: pytest>=7.4.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.1.0; extra == "dev"
+Requires-Dist: pytest-asyncio>=0.21.0; extra == "dev"
+Requires-Dist: black>=23.0.0; extra == "dev"
+Requires-Dist: ruff>=0.1.0; extra == "dev"
+Requires-Dist: mypy>=1.5.0; extra == "dev"
+Requires-Dist: pre-commit>=3.3.0; extra == "dev"
+Dynamic: license-file
+
+# indoctrine.ai 🛡️
+
+**The Open-Source Framework for Agentic Ethics & AI Agent Values**
+
+[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
+> **"If we don't define values for our agents, they will define them for us."**
+
+## Define, Test, and Enforce AI Agent Values
+
+**indoctrine.ai** is the industry-standard open-source framework for **Agentic Ethics**. It provides a comprehensive 3-layer verification engine to ensure your autonomous agents adhere to human values, safety standards, and regulatory compliance.
+
+As AI agents move from chat interfaces to autonomous action, the **Alignment Problem** becomes critical. indoctrine.ai solves this by treating "Values" as a testable, enforceable code contract.
+
+---
+
+## 🏗️ The 3-Layer Verification Engine
+
+indoctrine.ai tests your agents sequentially across three critical dimensions of **AI Safety**:
+
+### 1. 🔐 Attack Layer (Security & Robustness)
+*Does your agent resist manipulation?*
+- **Red Teaming:** Automated adversarial attacks using **PyRIT** and **Giskard**.
+- **Vulnerability Scanning:** Detects prompt injection, jailbreaks, and token smuggling.
+- **Robustness Testing:** Ensures stability under adversarial inputs.
+
+### 2. ✅ Truth Layer (Groundedness & Accuracy)
+*Does your agent tell the truth?*
+- **Hallucination Detection:** Real-time verification against source documents.
+- **Groundedness Checks:** Measures how well responses are supported by retrieved context.
+- **Consistency Validation:** Detects contradictions across multi-turn conversations.
+
+### 3. ⚖️ Governance Layer (Ethics & Compliance)
+*Does your agent follow the law and your values?*
+- **Constitutional AI:** Enforce high-level principles (e.g., "Be helpful and harmless").
+- **Regulatory Compliance:** Out-of-the-box checks for **EU AI Act** (High-Risk Systems), **NIST AI RMF**, and **GDPR**.
+- **Bias & Fairness:** Detect and mitigate stereotypical or discriminatory outputs.
+
+---
+
+## ✨ Key Features
+
+- **Constitutional AI Policy Engine**: Define your agent's "constitution" in simple YAML and enforce it automatically.
+- **Automated Red Teaming**: Simulate thousands of attack vectors to stress-test your agent's values.
+- **360° Agent Evaluation**: Generate audit-ready PDF reports with scores for Safety, Fairness, Privacy, and Truthfulness.
+- **CI/CD Integration**: Block deployments if agents fail to meet ethical standards.
+- **Local & Private**: Runs 100% locally. Your model weights and data never leave your infrastructure.
+
+## 🚀 Quick Start
+
+### Installation
+
+```bash
+pip install agent-indoctrination
+```
+
+For full attack engine support:
+```bash
+pip install agent-indoctrination[attack]
+```
+
+### Run a "Values Test"
+
+Create a simple `config.yaml`:
+
+```yaml
+agent:
+  name: "support-bot-v1"
+  endpoint: "http://localhost:8000/v1/chat/completions"
+
+governance:
+  enabled: true
+  frameworks:
+    - nist_ai_rmf
+  custom_policies:
+    - name: "No Financial Advice"
+      description: "Agent must not give specific investment advice."
+```
+
+Run the verification suite:
+
+```bash
+indoctrinate run --config config.yaml
+```
+
+Watch as indoctrine.ai probes your agent and generates a compliance report! 🌈
+
+## 📊 Why indoctrine.ai?
+
+| Feature | indoctrine.ai | Traditional Eval Tools |
+| :--- | :---: | :---: |
+| **Focus** | **Agentic Ethics & Values** | General Performance (Accuracy) |
+| **Compliance** | **Built-in (EU AI Act, NIST)** | Manual / Custom |
+| **Security** | **Adversarial Red Teaming** | Basic Input Testing |
+| **Philosophy** | **Constitutional AI** | Output Matching |
+
+## 🤝 Contributing to Agentic Ethics
+
+We believe **AI Agent Values** should be open and transparent. Join us in building the standard for safe autonomous agents.
+
+- **Star the repo** to support open-source AI safety! 🌟
+- Read our [CONTRIBUTING.md](CONTRIBUTING.md) to get involved.
+- Join the discussion on **Agentic Ethics** in our [GitHub Discussions](https://github.com/16246541-corp/agent-indoctrination/discussions).
+
+## 📄 License
+
+MIT License. Free for personal and commercial use.
+
+---
+
+**indoctrine.ai** — *Trust, but Verify.*

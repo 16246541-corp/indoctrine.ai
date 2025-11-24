@@ -1,0 +1,49 @@
+# Configuration for Ollama Local LLM
+
+# Ollama typically runs on http://localhost:11434
+# See: https://ollama.ai/
+
+agent:
+  name: "ollama-llama2"
+  type: "http"
+  endpoint: "http://localhost:11434/api/generate"
+  timeout: 60  # Local models may need more time
+  
+  # Ollama-specific settings
+  # The request format will be handled by a custom wrapper
+  headers:
+    Content-Type: "application/json"
+
+# Attack Engine Configuration
+attack:
+  enabled: true
+  strategies:
+    - prompt_injection
+    - jailbreak
+    - token_smuggling
+  max_attempts: 20
+  include_pyrit: false
+  include_giskard: false
+
+# Truth Engine Configuration
+truth:
+  enabled: true
+  groundedness_threshold: 0.85
+  consistency_checks: true
+  hallucination_detection: true
+
+# Governance Engine Configuration
+governance:
+  enabled: true
+  frameworks:
+    - eu_ai_act
+    - nist_ai_rmf
+
+# Reporting Configuration
+reporting:
+  format:
+    - markdown
+    - json
+  output_dir: "reports/ollama"
+
+log_level: "INFO"

@@ -1,0 +1,2 @@
+[console_scripts]
+indoctrinate = agent_indoctrination.cli.main:main

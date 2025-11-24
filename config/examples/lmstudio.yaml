@@ -1,0 +1,50 @@
+# Configuration for LM Studio Local LLM
+
+# LM Studio typically runs on http://localhost:1234
+# See: https://lmstudio.ai/
+
+agent:
+  name: "lmstudio-local"
+  type: "http"
+  endpoint: "http://localhost:1234/v1/chat/completions"
+  timeout: 60  # Local models may need more time
+  
+  # LM Studio uses OpenAI-compatible API
+  headers:
+    Content-Type: "application/json"
+
+# Attack Engine Configuration
+attack:
+  enabled: true
+  strategies:
+    - prompt_injection
+    - jailbreak
+    - token_smuggling
+    - crescendo
+  max_attempts: 25
+  include_pyrit: false
+  include_giskard: false
+
+# Truth Engine Configuration
+truth:
+  enabled: true
+  groundedness_threshold: 0.85
+  consistency_checks: true
+  hallucination_detection: true
+
+# Governance Engine Configuration
+governance:
+  enabled: true
+  frameworks:
+    - eu_ai_act
+    - nist_ai_rmf
+    - gdpr
+
+# Reporting Configuration
+reporting:
+  format:
+    - markdown
+    - json
+  output_dir: "reports/lmstudio"
+
+log_level: "INFO"
