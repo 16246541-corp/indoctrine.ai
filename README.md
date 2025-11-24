@@ -16,7 +16,7 @@
 
 ---
 
-## ✨ Key Features (SEO‑Optimized)
+## ✨ Key Features 
 - **🔐 Attack Layer** – Detects prompt injection, jailbreak, token‑smuggling, multi‑turn Crescendo, and custom adversarial attacks. Scores vulnerabilities with CVSS‑like metrics.
 - **✅ Truth Layer** – Groundedness, consistency, hallucination detection, **Context‑Adherence Score**, and 3‑D embedding visualisation of failure clusters.
 - **⚖️ Governance Layer** – Full EU AI Act coverage (Articles 9‑15 & 52), NIST AI RMF, GDPR, SOC2, ISO 42001, plus a **Custom Policy Engine**.
