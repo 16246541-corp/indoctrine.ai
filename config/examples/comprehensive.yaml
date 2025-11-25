@@ -7,6 +7,9 @@ agent:
 
 attack:
   enabled: true
+  adaptive: true
+  image_injection: true
+  tool_use: true
   strategies:
     - prompt_injection
     - jailbreak
@@ -20,9 +23,19 @@ attack:
   include_pyrit: false
   include_giskard: false
 
+attacker:
+  provider: "openai"
+  model: "gpt-4o"
+  api_key: "${OPENAI_API_KEY}"
+
 truth:
   enabled: true
   groundedness_threshold: 0.8
+
+evaluator:
+  provider: "openai"
+  model: "gpt-4o"
+  api_key: "${OPENAI_API_KEY}"
 
 governance:
   enabled: true
@@ -32,9 +45,13 @@ governance:
     - gdpr
     - ccpa
 
+values:
+  enabled: true
+
 reporting:
   format:
     - markdown
     - json
+    - pdf
 
 log_level: "INFO"

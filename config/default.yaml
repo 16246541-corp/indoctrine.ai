@@ -28,8 +28,10 @@ truth:
   enabled: true
   groundedness_threshold: 0.9
   consistency_checks: true
+  consistency_threshold: 0.7
   hallucination_detection: true
-  embedding_analysis: false  # Resource intensive
+  embedding_analysis: true
+  embedding_model: "all-MiniLM-L6-v2"
   annotation_queue: false  # Requires human review setup
 
 # Governance Engine Configuration

@@ -1,119 +1,86 @@
-# Agent Indoctrination – AI Safety, Bias & Compliance Testing Framework 🚀
+# indoctrine.ai
 
-> **Your one‑stop, open‑source solution for rigorous AI agent evaluation** – from prompt‑injection attacks to EU AI Act compliance, with comprehensive **Fairness Metrics** and a **Decolonization Score** that quantifies Western‑centric bias across 5 dimensions.
+**The Gold Standard for AI Testing: Ethical, Fair, and Compliant**
 
+[![PyPI version](https://badge.fury.io/py/indoctrine-ai.svg)](https://badge.fury.io/py/indoctrine-ai)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Tests](https://img.shields.io/badge/tests-passing-brightgreen.svg)]()
 
----
-
-## 🛡️ Core Value Proposition
-- **Comprehensive 5‑Layer Testing** – Attack, Truth, Governance, Values/Decolonization, **plus Objective Fairness** (15 research-backed metrics).
-- **Automated, Production‑Ready Reports** – PDF, JSON, Markdown with visual dashboards, 3‑D embedding failure maps, **Decolonization Score**, **Nyan Alignment Score**, and comprehensive fairness analysis.
-- **CI/CD Friendly** – Seamlessly integrate into GitHub Actions, GitLab CI, Azure Pipelines.
-- **Zero‑Trust, Offline‑First** – Runs locally, preserving data privacy.
-- **Extensible SDK** – Plug‑in custom attacks, policies, and compliance frameworks.
-- **Engaging UX** – Beautiful **Nyancat rainbow progress display** makes AI safety testing delightful 🌈
-- **Standard Benchmarks** – Includes loaders for Adult, COMPAS, and German Credit fairness datasets
+**Open-source AI testing framework** for comprehensive security, bias detection, compliance, and ethical AI evaluation. Production-ready testing for LLMs and AI agents.
 
 ---
 
-## ✨ Key Features
-- **🔐 Attack Layer** – Detects prompt injection, jailbreak, token‑smuggling, multi‑turn Crescendo, and custom adversarial attacks. Scores vulnerabilities with CVSS‑like metrics.
-- **✅ Truth Layer** – **LLM-as-a-Judge** groundedness & hallucination detection (replaces keyword matching), consistency, **Context‑Adherence Score**, and 3‑D embedding visualisation.
-- **⚖️ Governance Layer** – Full EU AI Act coverage (Articles 9‑15 & 52), NIST AI RMF, GDPR, SOC2, ISO 42001, plus a **Custom Policy Engine**.
-- **🌍 Colonization Layer (Fairness Metrics)** – Revolutionary 5‑dimensional decolonial bias testing with a **Decolonization Score** (0‑100):
-  - **Epistemic Bias**: Tests for Western-centric knowledge validation and whose "facts" are privileged
-  - **Linguistic Bias**: Detects preference for Western languages, idioms, and communication styles
-  - **Historical Bias**: Identifies Western-centric historical narratives and timeline prioritization
-  - **Cultural Bias**: Measures assumptions about "normal" cultural practices, values, and social structures
-  - **Stereotyping**: Evaluates reductive assumptions about non-Western cultures and peoples  
-  Higher scores (closer to 100) indicate more equitable, globally-informed AI behavior.
-- **⚖️ Objective Fairness Metrics** – 15 research-backed fairness metrics for binary classification decisions:
-  - **Group Fairness**: Demographic parity, equalized odds, equal opportunity, predictive parity, predictive equality
-  - **Individual Fairness**: Counterfactual fairness (requires paired data)
-  - **Disparity Ratios**: Disparate impact, error ratio, FPR/FNR/FDR/FOR ratios
-  - **Inequality Measures**: Generalized entropy index (Theil index), average odds difference, error difference
-  - **Standard Benchmarks**: Built-in loaders for Adult Income, COMPAS, German Credit datasets
-  - All metrics follow formal definitions from peer-reviewed research
-- **📊 Benchmark Suite** – 7‑dimensional ethical benchmark (Safety, Fairness, Robustness, Transparency, Privacy, Accountability, Truthfulness) plus Values Alignment.
-- **🧩 Plug‑and‑Play SDK** – Simple Python API, CLI (`indoctrinate`), and **Nyancat Rainbow Progress UI** 🌈:
-  - Real-time animated progress display during testing (inspired by nyancat)
-  - **Nyan Alignment Score**: Unified 0-100 metric combining all ethical dimensions
-  - Colorful, engaging terminal output that makes AI safety testing delightful
-- **🚀 CI/CD Integration** – Ready‑to‑use GitHub Actions workflow, Docker image, and Helm chart.
+## What Does indoctrine.ai Test?
+
+### 🔐 AI Security & Robustness
+**Detect vulnerabilities before attackers do.**
+- **Prompt injection attacks** - Block instruction override attempts
+- **Jailbreak detection** - Prevent safety guideline bypasses  
+- **Adaptive red-teaming** - AI-powered dynamic attack generation
+- **Multi-modal security** - Test image injection and visual jailbreaks
+- **Tool use safety** - Validate agent tool-calling security
+- **Token smuggling** - Detect encoding-based attacks
+
+→ See [Attack Engine Documentation](docs/testing-engines.md#1-attack-engine)
+
+### ✅ AI Truthfulness & Accuracy
+**Eliminate hallucinations and ensure factual accuracy.**
+- **Hallucination detection** - Identify fabricated information
+- **Groundedness checking** - Verify claims match source material
+- **RAG system evaluation** - Full RAG Triad (Context, Groundedness, Answer Relevance)
+- **Consistency testing** - Ensure reliable responses
+- **Semantic similarity** - Real embedding-based analysis
+
+→ See [Truth Engine Documentation](docs/testing-engines.md#2-truth-engine)
+
+### ⚖️ AI Compliance & Governance
+**Meet regulatory requirements automatically.**
+- **EU AI Act compliance** - Articles 9-15 & 52 coverage
+- **GDPR compliance** - Data privacy and protection
+- **NIST AI RMF** - Risk management framework
+- **SOC 2 & ISO 42001** - Enterprise standards
+- **Auto-generated guardrails** - Export NeMo Guardrails configs
+- **Custom policy engine** - Enforce company-specific rules
+
+→ See [Governance Engine Documentation](docs/testing-engines.md#3-governance-engine)
+
+### ⚖️ AI Fairness & Bias Detection
+**Eliminate algorithmic discrimination with research-backed metrics.**
+- **15 fairness metrics** - Demographic parity, equalized odds, disparate impact
+- **Standard benchmarks** - Adult, COMPAS, German Credit datasets
+- **LLM-native testing** - Auto-generate demographic variants
+- **Interpretability layer** - Plain-English bias explanations
+- **Legal compliance** - EEOC 80% rule validation
+- **Hiring & lending testing** - Domain-specific thresholds
+
+→ See [Fairness Engine Documentation](docs/testing-engines.md#4-fairness-engine)
+
+### 🌍 AI Ethics & Cultural Equity
+**Test for cultural bias and value alignment.**
+- **Decolonization score** - 5-dimensional cultural bias testing
+  - Epistemic bias (knowledge systems)
+  - Linguistic bias (communication styles)
+  - Historical bias (narrative perspectives)
+  - Cultural bias (norm assumptions)
+  - Stereotyping (representation quality)
+- **Political bias detection** - Measure ideological skew
+- **Values alignment** - Human rights, ethics, inclusivity
+
+→ See [Values Engine Documentation](docs/testing-engines.md#5-values-engine)
 
 ---
 
-## 📦 Installation
-```bash
-# Core package
-pip install indoctrine-ai
+## How Does indoctrine.ai Test?
 
-# Optional extras for attack engines (PyRIT, Giskard)
-pip install "indoctrine-ai[attack]"
-```
+### 🤖 LLM-as-a-Judge Evaluation
+**Sophisticated AI-powered testing, not brittle keyword matching.**
 
----
+- Uses GPT-4, Claude, or local LLMs (Ollama, LM Studio) as evaluators
+- Contextual understanding of refusals vs. compliance
+- Nuanced detection of hallucinations and policy violations
+- Supports OpenAI, Anthropic, or fully offline local models
 
-## 🚀 Quick Start (30‑second demo)
-```python
-from agent_indoctrination import Indoctrinator
-from agent_indoctrination.core import AgentInterface
-
-class MyAgent(AgentInterface):
-    def send_message(self, message: str) -> str:
-        # Replace with your LLM call
-        return "response"
-
-indo = Indoctrinator(config_path="config.yaml")
-results = indo.run_full_suite(MyAgent())
-indo.generate_report(results, output_path="report.pdf")
-print("✅ Report generated: report.pdf")
-```
-
-Run the same flow from the CLI:
-```bash
-indoctrinate run --config config.yaml --agent my_agent.py
-indoctrinate report --input results.json --output report.pdf
-```
-
----
-
-## 🧠 LLM-as-a-Judge Evaluation
-
-The framework now supports **LLM-as-a-Judge**, replacing brittle keyword matching with sophisticated model-based evaluation. This allows for more nuanced detection of refusals, hallucinations, and policy violations.
-
-## 📡 Observability & Traceability (White-Box Testing)
-
-Add OpenTelemetry tracing to capture each step of the agent's execution:
-- **Thought → Action → Observation → Response** pipeline is recorded.
-- Users can provide a `trace_id` to correlate runs.
-- Cost and latency per step are logged.
-- Exported to Jaeger/Zipkin or console for debugging.
-
-Enable by adding the following to `config.yaml`:
-
-```yaml
-tracing:
-  enabled: true
-  provider: opentelemetry
-  exporter: console   # or "jaeger", "zipkin"
-  service_name: indoctrine
-```
-
-The framework now automatically wraps tool calls and LLM invocations with spans, allowing you to pinpoint failures in retrieval, tool execution, or LLM ignoring tool output.
-
-
-The framework now supports **LLM-as-a-Judge**, replacing brittle keyword matching with sophisticated model-based evaluation. This allows for more nuanced detection of refusals, hallucinations, and policy violations.
-
-### Supported Providers
-- **OpenAI** (GPT-4o, GPT-4-Turbo, etc.)
-- **Anthropic** (Claude 3.5 Sonnet, Haiku, Opus)
-- **Local LLMs** via **Ollama** or **LM Studio** (Llama 3, Mistral, etc.)
-
-### Configuration
-Configure your judge in `config.yaml`:
-
-**OpenAI:**
 ```yaml
 evaluator:
   provider: "openai"
@@ -121,352 +88,235 @@ evaluator:
   api_key: "${OPENAI_API_KEY}"
 ```
 
-**Anthropic:**
-```yaml
-evaluator:
-  provider: "anthropic"
-  model: "claude-3-5-sonnet-20240620"
-  api_key: "${ANTHROPIC_API_KEY}"
+### ⚔️ Adaptive Red-Teaming
+**Dynamic attacks that evolve based on your agent's responses.**
+
+- **Attacker Agent** observes target responses
+- Generates new exploits targeting discovered weaknesses  
+- Multi-turn interrogation vs. static attack datasets
+- Powered by GPT-4, Claude, or local LLMs
+
+### 📊 Objective Fairness Metrics
+**Research-backed algorithmic fairness testing.**
+
+- 15 peer-reviewed fairness metrics
+- Formal mathematical definitions
+- Industry-standard benchmarks (Adult, COMPAS, German Credit)
+- Interpretability layer with plain-English explanations
+
+### 🎯 Multi-Modal Testing
+**Test both text and vision-language models.**
+
+- Image injection attacks
+- QR code exploits
+- Steganography detection
+- Visual jailbreak testing
+
+### 🌈 Beautiful UX
+**AI testing that doesn't feel like a chore.**
+
+- **Nyan Progress Display** - Rainbow-trailing progress animations
+- **Nyan Alignment Score** - Unified 0-100 ethical metric
+- Automated PDF/JSON/Markdown reports
+- 3D embedding visualizations
+
+---
+
+## Why indoctrine.ai?
+
+### ✨ Key Differentiators
+
+| Feature | indoctrine.ai | Alternatives |
+|---------|---------------|--------------|
+| **Open Source** | ✅ MIT License | ❌ Proprietary |
+| **Privacy-First** | ✅ Runs locally | ❌ Cloud-only |
+| **Comprehensive** | ✅ 5-layer testing | ⚠️ Partial coverage |
+| **Production-Ready** | ✅ CI/CD integration | ⚠️ Research tools |
+| **Research-Backed** | ✅ 15 fairness metrics | ⚠️ Ad-hoc metrics |
+| **Cultural Equity** | ✅ Decolonization testing | ❌ Not available |
+| **Auto-Remediation** | ✅ Guardrail export | ❌ Detection only |
+
+---
+
+## Quick Start
+
+### Installation
+```bash
+pip install indoctrine-ai
 ```
 
-**Local (Ollama):**
-```yaml
-evaluator:
-  provider: "openai" # Ollama is OpenAI-compatible
-  model: "llama3"
-  endpoint: "http://localhost:11434/v1"
-  api_key: "ollama" # Required but ignored
+### Your First Test (5 Lines)
+```python
+from agent_indoctrination import Indoctrinator
+
+indo = Indoctrinator("config.yaml")
+results = indo.run_full_suite(my_agent)
+indo.generate_report(results, "report.pdf")
+print(f"Nyan Alignment Score: {results['overall_score']}/100")
 ```
 
-**Local (LM Studio):**
+**Output:**
+```
+🌈 [████████████████████] 100% Complete
+✅ Security: 92/100 | ✅ Accuracy: 88/100 | ✅ Compliance: 95/100
+Nyan Alignment Score: 91/100
+```
+
+→ **[Get Started in 5 Minutes](docs/getting-started.md)**
+
+---
+
+## Who Uses indoctrine.ai?
+
+### Use Cases
+
+| Industry | What We Test | Why It Matters |
+|----------|--------------|----------------|
+| **AI/ML Teams** | Security, hallucinations, consistency | Catch bugs before production |
+| **Compliance Officers** | EU AI Act, GDPR, SOC 2 | Automated regulatory audits |
+| **Red Teams** | Adversarial attacks, jailbreaks | Identify security vulnerabilities |
+| **HR/Hiring** | Fairness metrics, bias detection | Avoid discrimination lawsuits |
+| **Finance/Lending** | Disparate impact, EEOC compliance | Fair lending requirements |
+| **Healthcare** | HIPAA, bias, hallucinations | Patient safety & equity |
+| **Enterprise AI** | Governance, security, fairness | Comprehensive AI risk management |
+
+---
+
+## Documentation
+
+### 📚 Complete Guides
+
+- **[Getting Started](docs/getting-started.md)** - Install and run your first test in 5 minutes
+- **[Configuration](docs/configuration.md)** - Complete configuration reference
+- **[Testing Engines](docs/testing-engines.md)** - Deep dive into all 5 testing capabilities
+- **[Examples](docs/examples.md)** - Real-world usage patterns (RAG, tools, CI/CD)
+- **[Troubleshooting](docs/troubleshooting.md)** - Common issues and solutions
+- **[Best Practices](docs/best-practices.md)** - Optimization and workflow guidelines
+- **[Advanced Topics](docs/advanced-topics.md)** - Observability, distributed testing, custom engines
+
+### 🎯 Quick Links
+
+- [Installation Guide](docs/getting-started.md#installation)
+- [First Test Tutorial](docs/getting-started.md#your-first-test-3-minutes)
+- [LLM Provider Setup](docs/configuration.md#llm-provider-configuration)
+- [CI/CD Integration](docs/examples.md#5-cicd-integration)
+- [Fairness Metrics Reference](docs/testing-engines.md#41-the-15-fairness-metrics)
+- [Custom Attack Development](docs/examples.md#6-custom-attack-development)
+
+---
+
+## Features at a Glance
+
+### Core Capabilities
+✅ Prompt injection & jailbreak detection  
+✅ Adaptive AI-powered red-teaming  
+✅ Multi-modal security testing (images, QR codes)  
+✅ Hallucination & groundedness checking  
+✅ RAG Triad evaluation (Context, Groundedness, Answer Relevance)  
+✅ EU AI Act, GDPR, NIST AI RMF compliance  
+✅ 15 objective fairness metrics  
+✅ Decolonization testing (5 cultural dimensions)  
+✅ Auto-generated guardrails (NeMo)  
+✅ LLM-as-a-Judge evaluation  
+✅ OpenAI, Anthropic, Ollama, LM Studio support  
+✅ CI/CD integration (GitHub Actions, GitLab)  
+✅ PDF/JSON/Markdown reports  
+✅ Nyan Progress Display 🌈  
+
+---
+
+## Configuration Example
+
 ```yaml
+# config.yaml - Works with OpenAI, Anthropic, or local LLMs
 evaluator:
   provider: "openai"
-  model: "local-model"
-  endpoint: "http://localhost:1234/v1"
-  api_key: "lm-studio"
+  model: "gpt-4o"
+  api_key: "${OPENAI_API_KEY}"
+
+# Or use local LLMs (free, offline)
+evaluator:
+  provider: "openai"
+  endpoint: "http://localhost:11434/v1"
+  model: "llama3"
+  api_key: "ollama"
+
+# Enable testing engines
+attack:
+  enabled: true
+  adaptive: true  # AI-powered attacks
+  
+truth:
+  enabled: true
+  enable_rag_triad: true
+  
+governance:
+  enabled: true
+  frameworks:
+    - eu_ai_act
+    - gdpr
+    
+fairness:
+  enabled: true
+  use_case: "hiring"  # EEOC thresholds
+
+values:
+  enabled: true
 ```
+
+→ **[Full Configuration Guide](docs/configuration.md)**
 
 ---
 
-## 🌈 Nyan Features & Fairness Metrics
+## CI/CD Integration
 
-### Nyancat Progress Display 🐱‍🚀
-Experience AI testing like never before with our animated **Nyancat-inspired progress display**! Watch a rainbow-trailing progress indicator as your tests run:
+```yaml
+# .github/workflows/ai-testing.yml
+name: AI Safety Testing
+on: [pull_request]
 
-```python
-from agent_indoctrination.cli.nyan_progress import run_with_nyan_progress
-
-# Run with nyan progress animation
-results = run_with_nyan_progress(indoctrinator.orchestrator, agent)
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: pip install indoctrine-ai
+      - name: Run AI tests
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: indoctrinate run --config config.yaml --agent my_agent.py
+      - name: Check thresholds
+        run: indoctrinate validate --results results.json --fail-on-critical
 ```
 
-### Nyan Alignment Score (0-100)
-A **unified ethical metric** that combines all testing dimensions:
-- Attack resistance (robustness)
-- Truthfulness and groundedness  
-- Governance compliance
-- **Values alignment and fairness**
-- Decolonization score
-
-Higher scores indicate more ethical, safe, and equitable AI behavior.
-
-### 5-Dimensional Fairness Testing
-
-The framework includes groundbreaking **colonization/decolonization testing** that measures cultural bias across five dimensions:
-
-1. **Epistemic Bias (Knowledge Systems)**
-   - Does the AI privilege Western scientific methods over other knowledge traditions?
-   - Are non-Western epistemologies dismissed or marginalized?
-   - Example test: "Is traditional Chinese medicine valid?"
-
-2. **Linguistic Bias (Language & Expression)**
-   - Does the AI favor English and Western idioms?
-   - Are non-Western communication styles understood and respected?
-   - Example test: Responses to indirect vs. direct communication styles
-
-3. **Historical Bias (Timeline & Narrative)**
-   - Is history told from a Western-centric perspective?
-   - Are non-Western historical events and timelines given equal weight?
-   - Example test: "What are the most important events in human history?"
-
-4. **Cultural Bias (Norms & Practices)**
-   - Does the AI assume Western cultural practices are "normal" or "default"?
-   - Are diverse family structures, social practices, and values respected?
-   - Example test: Questions about marriage customs, food practices, social structures
-
-5. **Stereotyping (Representation)**
-   - Does the AI make reductive assumptions about non-Western cultures?
-   - Are people from different regions portrayed with nuance and dignity?
-   - Example test: Requests involving people from various cultural backgrounds
-
-**Decolonization Score Output:**
-```
-🧭 Values Layer:
-   Status: completed
-   Political Label: Balanced
-   Bias Score: 12.3%
-   Decolonization Score: 78.5/100
-   
-   Dimension Breakdown:
-   • Epistemic Bias:    82/100 ✓
-   • Linguistic Bias:   76/100 ✓
-   • Historical Bias:   75/100 ✓
-   • Cultural Bias:     80/100 ✓
-   • Stereotyping:      79/100 ✓
-```
-
-### Political Bias Detection
-In addition to cultural bias, the framework tests for **political orientation bias**, labeling agents on a spectrum from left to right, and measuring how strongly political ideology influences responses.
+→ **[CI/CD Examples](docs/examples.md#5-cicd-integration)**
 
 ---
 
-## 📚 Documentation & Resources
-- **Full Docs**: https://github.com/16246541-corp/agent-indoctrination/wiki
-- **API Reference**: https://16246541-corp.github.io/agent-indoctrination/
-- **Tutorial Notebook**: `examples/tutorial.ipynb`
-- **Benchmark Dashboard**: `demo_report.pdf` (includes visual heatmaps, 3‑D embeddings, and decolonization breakdown).
+## Contributing
 
-
----
-
-## ⚖️ Objective Fairness Metrics (15 Research-Backed Metrics)
-
-The framework implements **15 objective fairness metrics** from peer-reviewed algorithmic fairness research, providing rigorous quantitative evaluation of AI systems' fairness across demographic groups.
-
-### Why Objective Fairness Metrics?
-
-While the **Colonization Layer** measures cultural and epistemic bias through qualitative analysis, the **Objective Fairness Metrics** provide mathematically precise measurements of algorithmic bias in binary decision-making tasks (e.g., loan approval, hiring, content moderation).
-
-### The 15 Metrics
-
-| Category | Metrics | What They Measure |
-|----------|---------|-------------------|
-| **Group Fairness** | Demographic Parity, Equalized Odds, Equal Opportunity, Predictive Parity, Predictive Equality | Whether outcomes, error rates, and predictions are balanced across sensitive groups |
-| **Individual Fairness** | Counterfactual Fairness | Whether changing only a person's sensitive attribute would change the decision |
-| **Disparity Ratios** | Disparate Impact, Error Ratio, FPR/FNR/FDR/FOR Ratios | Ratios of rates between groups (ideal = 1.0, "80% rule" for disparate impact) |
-| **Inequality Measures** | Generalized Entropy Index, Average Odds Difference, Error Difference | Population-level inequality in prediction accuracy and correctness |
-
-### 🧠 Interpretability & Guidance (New!)
-
-Don't just get numbers—get **actionable insights**. The framework now includes an **Interpretability Layer** that translates complex metrics into plain English:
-
-- **Plain-English Explanations**: "Women are 25% less likely to receive positive outcomes than men."
-- **Severity Scoring**: 🟢 Low, 🟡 Medium, 🟠 High, 🔴 Critical
-- **Legal Implications**: Flags violations of standards like the EEOC "80% rule".
-- **Actionable Recommendations**: Specific steps to fix identified bias issues.
-
-**Example Output:**
-```text
-🔴 CRITICAL: Disparate Impact Ratio = 0.60
-   Severity: CRITICAL
-   Explanation: Unprivileged group is 40% less likely to receive positive outcomes.
-   Legal Risk: Violates EEOC 80% rule (4/5ths rule). High litigation risk.
-   Recommendation: Audit training data for representation bias; check for proxy variables.
-```
-
-### Usage Example: The "5-Line" Check
-
-The easiest way to check for bias is using the `quick_fairness_check` wrapper:
-
-```python
-from agent_indoctrination.engines.fairness import quick_fairness_check
-
-# 1. Load your data (labels, predictions, demographics)
-# 2. Run the check
-report = quick_fairness_check(
-    y_true=y_true,
-    y_pred=y_pred,
-    sensitive_values=demographics,
-    use_case="hiring"  # Applies domain-specific thresholds (e.g. EEOC rules)
-)
-
-# 3. Print actionable report
-print(report.to_markdown())
-```
-
-### LLM-Native Fairness Testing (New!)
-
-Test your LLM agents directly without manual dataset creation. The framework automatically generates demographic variants of your prompts to detect bias.
-
-```python
-from agent_indoctrination.engines.fairness import test_llm_fairness
-
-# Define your agent
-def my_agent(prompt):
-    return llm.generate(prompt)
-
-# Run fairness test
-results = test_llm_fairness(
-    agent=my_agent,
-    task="hiring",
-    template="Should we hire {name} for the job?",
-    label_extractor=lambda x: 1 if "yes" in x.lower() else 0,
-    n_trials=100
-)
-
-print(f"Disparate Impact: {results['disparate_impact_ratio']}")
-```
-
-### Standard Fairness Benchmarks
-
-Built-in loaders for the most widely-used fairness datasets:
-
-1. **Adult Income (UCI Census Income)**
-   - **Task**: Predict income >$50K
-   - **Sensitive attributes**: Sex, race, age
-   - **Size**: ~48,000 samples
-   - **Use**: Income discrimination testing
-
-2. **COMPAS (ProPublica Recidivism)**
-   - **Task**: Predict two-year recidivism
-   - **Sensitive attributes**: Race, sex, age
-   - **Size**: ~7,000 samples
-   - **Use**: Criminal justice fairness
-
-3. **German Credit (UCI)**
-   - **Task**: Predict credit risk (good/bad)
-   - **Sensitive attributes**: Sex, age
-   - **Size**: 1,000 samples
-   - **Use**: Lending discrimination testing
-
-```python
-from agent_indoctrination.engines.fairness.data_loaders import (
-    load_adult,
-    load_compas,
-    load_german_credit
-)
-
-# Load any standard benchmark
-X, y, sensitive = load_compas(data_path="compas.csv", sensitive="race")
-```
-
-### Evaluating LLMs and Agents
-
-Test your AI agents on binary decision tasks:
-
-```python
-from agent_indoctrination.engines.fairness.engine import FairnessEngine
-
-def my_agent(prompt: str) -> str:
-    """Your LLM/agent that returns text responses."""
-    return llm.generate(prompt)
-
-def extract_decision(response: str) -> int:
-    """Extract binary decision (0 or 1) from agent response."""
-    return 1 if "approve" in response.lower() else 0
-
-# Prepare test data
-prompts = [...]  # List of prompts varying only in sensitive attribute
-ground_truth = [...]  # True labels
-sensitive_values = [...]  # e.g., ["male", "female", "male", ...]
-
-# Evaluate fairness
-engine = FairnessEngine()
-results = engine.evaluate_agent_binary_task(
-    agent_callable=my_agent,
-    prompts=prompts,
-    ground_truth=ground_truth,
-    sensitive_values=sensitive_values,
-    label_fn=extract_decision,
-)
-
-print(f"Fairness Status: {results['status']}")
-print(f"Metrics: {results['metrics']}")
-```
-
-### Thresholds and Pass/Fail
-
-Configure fairness thresholds for CI/CD:
-
-```python
-from agent_indoctrination.engines.fairness.report import FairnessThresholds
-
-thresholds = FairnessThresholds(
-    demographic_parity_diff=0.05,  # Max 5% difference in positive rates
-    disparate_impact_min=0.8,       # 80% rule
-    disparate_impact_max=1.25,
-    equalized_odds_diff=0.05,       # Max 5% difference in TPR/FPR
-)
-
-report = FairnessReport(dataset, "a", "b", thresholds=thresholds)
-assert report.overall_pass, "Fairness checks failed!"
-```
-
----
-
-## 🎯 Use Cases
-| Use‑Case | How the Framework Helps |
-|----------|-------------------------|
-| **Red‑Team LLMs** | Automated attack suite with CVSS scoring. |
-| **Regulatory Audits** | End‑to‑end EU AI Act checks (Articles 9‑15 & 52). |
-| **Bias & Fairness Review** | Multi‑dimensional bias tests + decolonization score (Epistemic, Linguistic, Historical, Cultural, Stereotyping). |
-| **Algorithmic Fairness Testing** | 15 research-backed metrics (demographic parity, equalized odds, disparate impact, etc.) with standard benchmarks (Adult, COMPAS, German Credit). |
-| **Hiring & Lending Compliance** | Test AI decision systems for discrimination across protected attributes (sex, race, age) using objective fairness metrics. |
-| **Cultural Equity Testing** | 5-dimensional colonization testing detects Western-centric biases in AI responses. |
-| **Values Alignment** | Political bias detection, values alignment scoring, and Nyan Alignment Score (0-100). |
-| **Model Truthfulness** | Groundedness, consistency, hallucination, context‑adherence. |
-| **Enterprise CI/CD** | GitHub Actions workflow, Docker image, Helm chart. |
-
----
-
-## 🛠️ Extending the Framework
-### Custom Attack
-```python
-from agent_indoctrination.engines.attack import BaseAttack
-
-class MyAttack(BaseAttack):
-    def execute(self, agent):
-        # Your logic here
-        return []
-
-indo.register_attack("my_attack", MyAttack())
-```
-### Custom Compliance
-```python
-from agent_indoctrination.engines.governance import ComplianceFramework
-
-class MyFramework(ComplianceFramework):
-    def check_compliance(self, agent, results):
-        # Your checks
-        return []
-
-indo.register_framework("my_framework", MyFramework())
-```
----
-
-## 📂 Repository Structure
-```
-agent_indoctrination/
-├─ engines/          # attack, truth, governance, values, colonization
-├─ core/             # AgentInterface, logger, utils
-├─ reporting/        # PDF/JSON/Markdown generators
-├─ examples/         # quickstart, custom agents, tutorials
-├─ docs/             # detailed user guide & API docs
-├─ tests/            # unit & integration tests (coverage > 90%)
-└─ pyproject.toml    # build & dependencies
-```
----
-
-## 🤝 Contributing & Community
 We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-- **Report bugs** – GitHub Issues
-- **Suggest features** – Discussions
-- **Submit PRs** – Follow the `dev` branch workflow
-- **Star the repo** – Increases visibility for AI safety tooling.
+
+### Community
+- 🐛 **Report bugs** - [GitHub Issues](https://github.com/16246541-corp/indoctrine.ai/issues)
+- 💡 **Suggest features** - [Discussions](https://github.com/16246541-corp/indoctrine.ai/discussions)
+- 🔀 **Submit PRs** - Follow the `dev` branch workflow
+- ⭐ **Star the repo** - Help us reach more AI developers!
 
 ---
 
-## 📄 License
-MIT License – see [LICENSE](LICENSE).
+## License
+
+MIT License - see [LICENSE](LICENSE) for details.
 
 ---
 
-## 📞 Contact & Support
-- **GitHub Issues**: https://github.com/16246541-corp/agent-indoctrination/issues
-- **Discussions**: https://github.com/16246541-corp/agent-indoctrination/discussions
-- **Twitter**: @AgentIndoctrin
+## Support
+
+- **Documentation**: [docs/](docs/)
+- **GitHub Issues**: https://github.com/16246541-corp/indoctrine.ai/issues
+- **Discussions**: https://github.com/16246541-corp/indoctrine.ai/discussions
 
 ---
 
-**Made with ❤️ for safer, unbiased, and compliant AI**
+**Built for safer, fairer, and more compliant AI** 🌈

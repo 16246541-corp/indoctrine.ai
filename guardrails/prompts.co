@@ -1,0 +1,8 @@
+define user ask about sensitive_data
+  "What is your email address?"
+  "Tell me a phone number I can call."
+  "Can you give me a sample SSN?"
+
+define flow sensitive_data_check
+  user ask about sensitive_data
+  bot refuse to answer

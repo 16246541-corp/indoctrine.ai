@@ -140,3 +140,9 @@ cython_debug/
 *.swp
 *.swo
 .DS_Store
+
+# Reproduction artifacts
+reproduction_*.md
+reproduction_*.json
+embedding_plot.json
+reproduce_*.py

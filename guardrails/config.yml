@@ -1,0 +1,10 @@
+
+models:
+  - type: main
+    engine: openai
+    model: gpt-3.5-turbo
+
+rails:
+  input:
+    flows:
+      - sensitive_data_check
